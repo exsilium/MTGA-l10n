@@ -1,0 +1,50 @@
+{
+  "name": "mtga-l10n",
+  "version": "1.0.0",
+  "description": "Pipeline to locali(s)(z)e Magic: The Gathering Arena Card texts",
+  "main": "dist/index.js",
+  "bin": {
+    "mtga-l10n": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mtga",
+    "magic",
+    "localization",
+    "translation",
+    "l10n"
+  ],
+  "author": "Sten Feldman",
+  "license": "BSD-2-Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exsilium/MTGA-l10n.git"
+  },
+  "bugs": {
+    "url": "https://github.com/exsilium/MTGA-l10n/issues"
+  },
+  "homepage": "https://github.com/exsilium/MTGA-l10n#readme",
+  "dependencies": {
+    "better-sqlite3": "^11.8.1",
+    "commander": "^12.1.0",
+    "gettext-parser": "^8.0.0",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/gettext-parser": "^4.0.4",
+    "@types/node": "^22.10.2",
+    "@types/node-fetch": "^2.6.13",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
