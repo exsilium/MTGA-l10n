@@ -13,6 +13,11 @@ export interface ScryfallCard {
   collector_number: string;
 }
 
+interface ScryfallSearchResponse {
+  data?: ScryfallCard[];
+  total_cards?: number;
+}
+
 export class ScryfallAPI {
   private static readonly BASE_URL = 'https://api.scryfall.com';
   private static readonly RATE_LIMIT_DELAY = 100; // 100ms between requests
@@ -39,9 +44,9 @@ export class ScryfallAPI {
         throw new Error(`Scryfall API error: ${response.statusText}`);
       }
 
-      const data = await response.json() as any;
+      const data = await response.json() as ScryfallSearchResponse;
       if (data.data && data.data.length > 0) {
-        return data.data[0] as ScryfallCard;
+        return data.data[0];
       }
       return null;
     } catch (error) {
@@ -70,7 +75,7 @@ export class ScryfallAPI {
         return null;
       }
 
-      const searchData = await searchResponse.json() as any;
+      const searchData = await searchResponse.json() as ScryfallCard;
       
       // Now get the specific language version
       await this.rateLimit();
@@ -102,7 +107,7 @@ export class ScryfallAPI {
         return [];
       }
 
-      const data = await response.json() as any;
+      const data = await response.json() as ScryfallSearchResponse;
       return data.data || [];
     } catch (error) {
       console.error(`Error fetching card printings for "${cardName}":`, error);

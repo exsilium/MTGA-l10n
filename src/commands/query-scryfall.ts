@@ -1,4 +1,4 @@
-import { ScryfallAPI } from '../utils/scryfall.js';
+import { ScryfallAPI, ScryfallCard } from '../utils/scryfall.js';
 
 export async function queryScryfall(
   cardName: string,
@@ -65,7 +65,7 @@ export async function queryScryfall(
   }
 }
 
-function displayCard(card: any): void {
+function displayCard(card: ScryfallCard): void {
   console.log('\n--- Card Information ---');
   console.log(`Name: ${card.printed_name || card.name}`);
   console.log(`Type: ${card.printed_type_line || card.type_line}`);
